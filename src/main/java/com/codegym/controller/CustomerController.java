@@ -33,9 +33,10 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(Customer customer) {
+    public String save(Customer customer, RedirectAttributes redirectAttributes) {
         customer.setId((int) (Math.random() * 10000));
         customerService.save(customer);
+        redirectAttributes.addFlashAttribute("success", "Create customer successfully!");
         return "redirect:/customer";
     } // Lưu đối tượng customer vào danh sách
 
